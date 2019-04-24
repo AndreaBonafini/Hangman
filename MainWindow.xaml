@@ -6,20 +6,22 @@
         xmlns:local="clr-namespace:Hangman"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Canvas>
+    <Canvas x:Name="canvas">
+        <Image Source="space.jpg" Height="319" Width="649" Visibility="Visible" Canvas.Left="-61"/>
         <StackPanel Width="517">
-            <RadioButton x:Name="rbHard" Content="Hard"/>
-            <RadioButton x:Name="rbMedium" Content="Medium"/>
-            <RadioButton x:Name="rbEasy" Content="Easy" Width="791"/>
-            <Button x:Name="btnStartGame" Content="Click to start the game!" Click="btnStartGame_Click" Width="531"/>
-            <TextBox x:Name="txtLetterInput" MaxLength="1"/>
-            <Button x:Name="btnLetterCheck" Content="Click to Check for Letter" Click="btnLetterCheck_Click"/>
+            <RadioButton x:Name="rbHard" Content="Hard" Background="White" Foreground="#FFFFEFEF"/>
+            <RadioButton x:Name="rbMedium" Content="Medium" Foreground="#FFFFEFEF"/>
+            <RadioButton x:Name="rbEasy" Content="Easy" Width="791" Foreground="#FFFFEFEF"/>
+            <Button x:Name="btnStartGame" Content="Click to start the game!" Click="btnStartGame_Click" Background="Transparent" Foreground="#FFFFEFEF" Height="24"/>
+            <TextBox x:Name="txtLetterInput" MaxLength="1" Background="Transparent" Width="792" BorderBrush="Transparent"/>
+            <Button x:Name="btnLetterCheck" Content="Click to Check for Letter" Click="btnLetterCheck_Click" Background="Transparent" Foreground="#FFFFEFEF"/>
             <TextBlock x:Name="lblOutput"/>
+            <Label x:Name="lblWrongLetter"></Label>
         </StackPanel>
-        <Rectangle Width="100" Height="5" Fill="Black" Canvas.Left="407" Canvas.Top="304"/>
-        <Rectangle Width="5" Height="200" Fill="Black" Canvas.Left="456" Canvas.Top="109"/>
-        <Rectangle Width="75" Height="5" Fill="Black" Canvas.Left="386" Canvas.Top="109"/>
-        <Rectangle Width="5" Height="20" Fill="Black" Canvas.Left="386" Canvas.Top="109"/>
+        <Rectangle Width="100" Height="5" Fill="White" Canvas.Left="407" Canvas.Top="304"/>
+        <Rectangle Width="5" Height="200" Fill="White" Canvas.Left="456" Canvas.Top="109"/>
+        <Rectangle Width="75" Height="5" Fill="White" Canvas.Left="386" Canvas.Top="109"/>
+        <Rectangle Width="5" Height="20" Fill="White" Canvas.Left="386" Canvas.Top="109"/>
     </Canvas>
 </Window>
 

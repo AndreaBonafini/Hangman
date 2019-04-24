@@ -115,83 +115,296 @@ namespace Hangman
                 }
             }
             lblOutput.Text += Environment.NewLine + "Lives left:" + lives;
+            MessageBox.Show("To input a new letter,please delete the previous one");
         }
 
         private void btnLetterCheck_Click(object sender, RoutedEventArgs e)
         {//replace the letter of the input if right
             DiscoveredAnswer = lblOutput.Text.ToString();
-            for (int i = 0; i < RightAnswer.Length; i++)
+            if (RightAnswer == null)
             {
-                char lettersingle = RightAnswer[i];
-                if (lettersingle.ToString() == txtLetterInput.Text)
-                {
-                    DiscoveredAnswer = DiscoveredAnswer.Remove(i * 2, 1);
-                    DiscoveredAnswer = DiscoveredAnswer.Insert(i * 2, lettersingle.ToString());
-                    lblOutput.Text = "";
-                    lblOutput.Text += DiscoveredAnswer;
-                    FoundLetter = true;
-                }
+                MessageBox.Show("Please select a difficulty and restart the game");
+                RightAnswer = " ";
             }
-            //replace the image when the letter is wrong
-            if (FoundLetter == false)
+            else
             {
-                Error404 += 1;
-                if (Error404 == 8)
+                for (int i = 0; i < RightAnswer.Length; i++)
                 {
-                    James = lives - Error404;
-                    lblOutput.Text += "," + James;
+                    char lettersingle = RightAnswer[i];
+                    if (lettersingle.ToString() == txtLetterInput.Text)
+                    {
+                        DiscoveredAnswer = DiscoveredAnswer.Remove(i * 2, 1);
+                        DiscoveredAnswer = DiscoveredAnswer.Insert(i * 2, lettersingle.ToString());
+                        lblOutput.Text = "";
+                        lblOutput.Text += DiscoveredAnswer;
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "`")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "~")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "!")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "1")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "2")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "@")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "#")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "3")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "$")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "4")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "%")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "5")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "6")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "^")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "&")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "7")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "*")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "8")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "(")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "9")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "0")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == ")")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "[")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "]")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "+")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "=")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "-")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "_")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "\"")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "}")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "{")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "'")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == ":")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == ";")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == ".")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == ">")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "<")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == ",")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "/")
+                    {
+                        FoundLetter = true;
+                    }
+                    else if (txtLetterInput.Text == "?")
+                    {
+                        FoundLetter = true;
+                    }
                 }
-                else if (Error404 == 7)
+                //replace the image when the letter is wrong
+                if (FoundLetter == false)
                 {
-                    James = lives - Error404;
-                    lblOutput.Text += "," + James;
-                }
-                else if (Error404 == 6)
-                {
-                    James = lives - Error404;
-                    lblOutput.Text += "," + James;
-                }
-                else if (Error404 == 5)
-                {
-                    James = lives - Error404;
-                    lblOutput.Text += "," + James;
-                }
-                else if (Error404 == 4)
-                {
-                    James = lives - Error404;
-                    lblOutput.Text += "," + James;
-                }
-                else if (Error404 == 3)
-                {
-                    James = lives - Error404;
-                    lblOutput.Text += "," + James;
-                }
-                else if (Error404 == 2)
-                {
-                    James = lives - Error404;
-                    lblOutput.Text += "," + James;
-                }
-                else if (Error404 == 1)
-                {
-                    James = lives - Error404;
-                    lblOutput.Text += "," + James;
-                }
-                bool Game1 = false;
-                CheckForWin(Game1);
-            }
+                    Error404 += 1;
+                    if (Error404 == 1)
+                    {
+                        Ellipse head = new Ellipse();
+                        head.Width = 60;
+                        head.Height = 60;
+                        head.Fill = Brushes.White;
+                        head.Stroke = Brushes.White;
+                        head.StrokeThickness = 5;
+                        canvas.Children.Add(head);
+                        Canvas.SetTop(head, 182);
+                        Canvas.SetLeft(head, 408);
+                        James = lives - Error404;
+                        lblOutput.Text += "," + James;
+                    }
+                    else if (Error404 == 2)
+                    {
+                        Rectangle Body = new Rectangle();
+                        Body.Width = 5;
+                        Body.Height = 70;
+                        Body.Fill = Brushes.White;
+                        Body.Stroke = Brushes.White;
+                        canvas.Children.Add(Body);
+                        Canvas.SetTop(Body, 237);
+                        Canvas.SetLeft(Body, 436);
+                        James = lives - Error404;
+                        lblOutput.Text += "," + James;
+                    }
+                    else if (Error404 == 3)
+                    {
+                        Line leg1 = new Line();
+                        leg1.X1 = 438;
+                        leg1.X2 = 460;
+                        leg1.Y1 = 305;
+                        leg1.Y2 = 350;
+                        leg1.Stroke = Brushes.White;
+                        leg1.StrokeThickness = 5;
+                        leg1.HorizontalAlignment = HorizontalAlignment.Left;
+                        leg1.VerticalAlignment = VerticalAlignment.Center;
+                        canvas.Children.Add(leg1); James = lives - Error404;
+                        lblOutput.Text += "," + James;
+                    }
+                    else if (Error404 == 4)
+                    {
+                        Line leg2 = new Line();
+                        leg2.X1 = 438;
+                        leg2.X2 = 416;
+                        leg2.Y1 = 245;
+                        leg2.Y2 = 290;
+                        leg2.Stroke = Brushes.White;
+                        leg2.StrokeThickness = 5;
+                        leg2.HorizontalAlignment = HorizontalAlignment.Left;
+                        leg2.VerticalAlignment = VerticalAlignment.Center;
+                        canvas.Children.Add(leg2); James = lives - Error404;
+                        lblOutput.Text += "," + James;
+                    }
+                    else if (Error404 == 5)
+                    {
+                        Line arm1 = new Line();
+                        arm1.X1 = 438;
+                        arm1.X2 = 460;
+                        arm1.Y1 = 245;
+                        arm1.Y2 = 290;
+                        arm1.Stroke = Brushes.White;
+                        arm1.StrokeThickness = 5;
+                        arm1.HorizontalAlignment = HorizontalAlignment.Left;
+                        arm1.VerticalAlignment = VerticalAlignment.Center;
+                        canvas.Children.Add(arm1);
+                        James = lives - Error404;
+                        lblOutput.Text += "," + James;
+                    }
+                    else if (Error404 == 6)
+                    {
+                        Line arm2 = new Line();
+                        arm2.X1 = 438;
+                        arm2.X2 = 416;
+                        arm2.Y1 = 305;
+                        arm2.Y2 = 350;
+                        arm2.Stroke = Brushes.White;
+                        arm2.StrokeThickness = 5;
+                        arm2.HorizontalAlignment = HorizontalAlignment.Left;
+                        arm2.VerticalAlignment = VerticalAlignment.Center;
+                        canvas.Children.Add(arm2); James = lives - Error404;
+                        lblOutput.Text += "," + James;
+                    }
 
+                    bool Game1 = false;
+                    CheckForWin(Game1);
+                }
+            }
 
         }
         public bool CheckForWin(bool Win)
         {
-            if (lblOutput.Text.ToString() == RightAnswer)
+            if (lblOutput.Text.ToString().Contains("_"))
             {
-                MessageBox.Show("Congrats.You Win");
-                return Win = true;
+                return Win = false;
             }
             else
             {
-                return Win = false;
+                MessageBox.Show("Congrats.You Win");
+                return Win = true;
             }
         }
 
