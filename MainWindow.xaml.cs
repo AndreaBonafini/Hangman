@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace WpfApp4
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,8 +22,7 @@ namespace WpfApp1
     {
         int count = 0;
         string RightAnswer;
-        Random random = new Random();
-      //Random random = new Random((int)DateTime.Now.Ticks);
+        Random random = new Random(1);
         string DiscoveredAnswer;
         string[] incorrectGuessed = new string[7];
         string[] easy = new string[10];
@@ -35,15 +34,15 @@ namespace WpfApp1
         string lblWrong = null;
         System.IO.StreamReader HardLevel = new System.IO.StreamReader("Hard.txt");
         System.IO.StreamReader easyread = new System.IO.StreamReader("Easy.txt");
-        System.IO.StreamReader mediumLevel = new System.IO.StreamReader("Medium.txt");
+        System.IO.StreamReader mediumLevel = new System.IO.StreamReader("Medium.txt");        
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void BtnStartGame_Click(object sender, RoutedEventArgs e)
-        { MessageBox.Show("Enter the letters in LOWER CASE");
+        private void btnStartGame_Click(object sender, RoutedEventArgs e)
+        {
             count = 0;
             int randomnumber = random.Next(1, 10);
             lblOutput.Text = "";
@@ -64,63 +63,60 @@ namespace WpfApp1
                     RightAnswer = easy[randomnumber];
                     count++;
                 }
-                //easyread.Close();
                 for (int i = 0; i < RightAnswer.Length; i++)
                 {
                     lblOutput.Text += "_" + " ";
                 }
             }
-                if ((bool)rbMedium.IsChecked)
+            if ((bool)rbMedium.IsChecked)
+            {
+                count = 0;
+                while (!mediumLevel.EndOfStream)
                 {
-                    count = 0;
-                    while (!mediumLevel.EndOfStream)
+                    if (count == randomnumber)
                     {
-                        if (count == randomnumber)
-                        {
-                            medium[randomnumber] = mediumLevel.ReadLine();
-                        }
-                        else
-                        {
-                            mediumLevel.ReadLine();
-                        }
-                        RightAnswer = medium[randomnumber];
-                        count++;
+                        medium[randomnumber] = mediumLevel.ReadLine();
                     }
-                    //mediumLevel.Close();
-                    for (int i = 0; i < RightAnswer.Length; i++)
+                    else
                     {
-                        lblOutput.Text += "_" + " ";
+                        mediumLevel.ReadLine();
                     }
+                    RightAnswer = medium[randomnumber];
+                    count++;
                 }
-                if ((bool)rbHard.IsChecked)
+                for (int i = 0; i < RightAnswer.Length; i++)
                 {
-                    count = 0;
-                    while (!HardLevel.EndOfStream)
-                    {
-                        if (count == randomnumber)
-                        {
-                            hard[randomnumber] = HardLevel.ReadLine();
-                        }
-                        else
-                        {
-                            HardLevel.ReadLine();
-                        }
-                        RightAnswer= hard[randomnumber];
-                        count++;
-                    }
-                    //HardLevel.Close();
-                    for (int i = 0; i < RightAnswer.Length; i++)
-                    {
-                        lblOutput.Text += "_" + " ";
-                    }
+                    lblOutput.Text += "_" + " ";
                 }
+            }
+            if ((bool)rbHard.IsChecked)
+            {
+                count = 0;
+                while (!HardLevel.EndOfStream)
+                {
+                    if (count == randomnumber)
+                    {
+                        hard[randomnumber] = HardLevel.ReadLine();
+                    }
+                    else
+                    {
+                        HardLevel.ReadLine();
+                    }
+                    RightAnswer = hard[randomnumber];
+                    count++;
+                }
+                for (int i = 0; i < RightAnswer.Length; i++)
+                {
+                    lblOutput.Text += "_" + " ";
+                }
+            }
             MessageBox.Show("To input a new letter,please delete the previous one");
-            RightAnswer.ToUpper();         
+            RightAnswer.ToUpper();
         }
 
-        private void BtnLetterCheck_Click(object sender, RoutedEventArgs e)
+        private void btnLetterCheck_Click(object sender, RoutedEventArgs e)
         {
-            txtLetterInput.Text.ToUpper();
+            //replace the letter of the input if right
             DiscoveredAnswer = lblOutput.Text.ToString();
             if (RightAnswer == null)
             {
@@ -129,24 +125,227 @@ namespace WpfApp1
             }
             else
             {
-                if (!RightAnswer.Contains(txtLetterInput.Text))
+                if (txtLetterInput.Text == "`")
                 {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "~")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "!")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "1")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "2")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "@")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "#")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "3")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "$")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "4")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "%")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "5")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "6")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "^")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "&")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "7")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "*")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "8")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "(")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "9")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "0")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == ")")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "[")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "]")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "+")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "=")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "-")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "_")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "\"")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "}")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "{")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "'")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == ":")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == ";")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == ".")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == ">")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "<")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == ",")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "/")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+                else if (txtLetterInput.Text == "?")
+                {
+                    txtLetterInput.Clear();
+                    MessageBox.Show("Character not valid. \n Insert a letter");
+                }
+            
 
+            if (!RightAnswer.Contains(txtLetterInput.Text))
+                {                    
                     counter--;
                     //incorrectGuessed[i] = txtLetterInput.Text;
                     lblWrong = lblWrong + txtLetterInput.Text + " ";
                     lblWrongLetter.Content = lblWrong;
-
+                    
                     if (counter != 0)
                     {
-                        lblWrongLetter.Content = "Your guess:  " + "\"" + txtLetterInput.Text + "\"" + " was incorrect!";
+                        lblWrongLetter.Content = "Your guess:  " + "\"" + txtLetterInput.Text 
+                            + "\"" + " was incorrect!";
                         lblLives.Content = Environment.NewLine + "Lives left:" + counter.ToString();
                     }
 
                     if (counter == 0)
                     {
-                        MessageBox.Show("You lose! The word you were looking for was: " + RightAnswer.ToUpper());
+                        lblOutput.Text = "You lose! The word you were looking for was: " + RightAnswer;
                     }
+                    txtLetterInput.Clear();
                 }
                 else
                 {
@@ -159,13 +358,14 @@ namespace WpfApp1
                             DiscoveredAnswer = DiscoveredAnswer.Insert(i * 2, lettersingle.ToString());
                             lblOutput.Text = "";
                             lblOutput.Text += DiscoveredAnswer;
-                            lblWrongLetter.Content = "Your guess:  " + "\"" + txtLetterInput.Text + "\"" + " was correct!";
                         }
                     }
+                    txtLetterInput.Clear();
                 }
+
                 if (!DiscoveredAnswer.Contains("_"))
                 {
-                    MessageBox.Show("Congrats!! You won. \n The cotrect word was: " + RightAnswer.ToUpper());
+                    MessageBox.Show("Congrats!! You won. \n The correct word was: " + RightAnswer.ToUpper());
                 }
                 if (counter == 6)
                 {
@@ -175,7 +375,7 @@ namespace WpfApp1
                     head.Fill = Brushes.White;
                     head.Stroke = Brushes.White;
                     head.StrokeThickness = 5;
-                    canvas.Children.Add(head);
+                    man.Children.Add(head);
                     Canvas.SetTop(head, 232);
                     Canvas.SetLeft(head, 408);
                 }
@@ -186,7 +386,7 @@ namespace WpfApp1
                     Body.Height = 70;
                     Body.Fill = Brushes.White;
                     Body.Stroke = Brushes.White;
-                    canvas.Children.Add(Body);
+                    man.Children.Add(Body);
                     Canvas.SetTop(Body, 287);
                     Canvas.SetLeft(Body, 436);
                 }
@@ -201,7 +401,7 @@ namespace WpfApp1
                     leg1.StrokeThickness = 5;
                     leg1.HorizontalAlignment = HorizontalAlignment.Left;
                     leg1.VerticalAlignment = VerticalAlignment.Center;
-                    canvas.Children.Add(leg1);
+                    man.Children.Add(leg1);
                 }
                 else if (counter == 1)
                 {
@@ -214,7 +414,7 @@ namespace WpfApp1
                     leg2.StrokeThickness = 5;
                     leg2.HorizontalAlignment = HorizontalAlignment.Left;
                     leg2.VerticalAlignment = VerticalAlignment.Center;
-                    canvas.Children.Add(leg2);
+                    man.Children.Add(leg2);
                 }
                 else if (counter == 3)
                 {
@@ -227,7 +427,7 @@ namespace WpfApp1
                     arm1.StrokeThickness = 5;
                     arm1.HorizontalAlignment = HorizontalAlignment.Left;
                     arm1.VerticalAlignment = VerticalAlignment.Center;
-                    canvas.Children.Add(arm1);
+                    man.Children.Add(arm1);
                 }
                 else if (counter == 4)
                 {
@@ -240,21 +440,23 @@ namespace WpfApp1
                     arm2.StrokeThickness = 5;
                     arm2.HorizontalAlignment = HorizontalAlignment.Left;
                     arm2.VerticalAlignment = VerticalAlignment.Center;
-                    canvas.Children.Add(arm2);
+                    man.Children.Add(arm2);
                 }
             }
         }
 
         private void BtnReplay_Click(object sender, RoutedEventArgs e)
         {
-
             easyread.DiscardBufferedData();
             easyread.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
             HardLevel.DiscardBufferedData();
             HardLevel.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
             mediumLevel.DiscardBufferedData();
             mediumLevel.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
-            canvas.Children.Clear();
+            //hang.Children.Clear();
+            man.Children.Clear();
+            lblLetters.Content = " ";
+            lblWrongLetter.Content = " ";
 
             for (int i = 0; i < 10; i++)
             {
@@ -264,8 +466,7 @@ namespace WpfApp1
             counter = 5;
             lblWrong = null;
         }
-
-        private void BtnRestart_Click(object sender, RoutedEventArgs e)
+        private void btnReplay_Click_1(object sender, RoutedEventArgs e)
         {
 
         }
