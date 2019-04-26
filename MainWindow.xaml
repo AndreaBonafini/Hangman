@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" >
     <Canvas x:Name="canvas" Background="Green">
-        <Image Source="BackGround.bmp" Height="569" Canvas.Left="-184"/>
+        <Image Source="space.jpg" Height="569" Canvas.Left="-184"/>
         <StackPanel>
             <RadioButton x:Name="rbHard" Content="Hard" Background="White" Foreground="#FFFFEFEF"/>
             <RadioButton x:Name="rbMedium" Content="Medium" Foreground="#FFFFEFEF"/>
             <RadioButton x:Name="rbEasy" Content="Easy" Width="791" Foreground="#FFFFEFEF"/>
-            <Button x:Name="btnStartGame" Content="Click to start the game!" Click="BtnStartGame_Click" Background="Transparent" Foreground="#FFFFEFEF"/>
+            <Button x:Name="btnStartGame" Content="Click to start the game!" Click="BtnStartGame_Click" Background="Transparent" Foreground="#FFFFEFEF" />
             <TextBox x:Name="txtLetterInput" MaxLength="1" Background="Transparent" Width="792" BorderBrush="Transparent"/>
             <Button x:Name="btnLetterCheck" Content="Click to Check for Letter" Click="BtnLetterCheck_Click" Background="Transparent" Foreground="#FFFFEFEF"/>
             <TextBlock x:Name="lblOutput"/>

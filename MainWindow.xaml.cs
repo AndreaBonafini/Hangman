@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp4
+namespace WpfApp1
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,8 +22,8 @@ namespace WpfApp4
     {
         int count = 0;
         string RightAnswer;
-        Random random = new Random(1);
-        //Random random = new Random((int)DateTime.Now.Ticks);
+        Random random = new Random();
+      //Random random = new Random((int)DateTime.Now.Ticks);
         string DiscoveredAnswer;
         string[] incorrectGuessed = new string[7];
         string[] easy = new string[10];
@@ -33,15 +33,17 @@ namespace WpfApp4
         //bool GameOver;
         int counter = 7;
         string lblWrong = null;
+        System.IO.StreamReader HardLevel = new System.IO.StreamReader("Hard.txt");
+        System.IO.StreamReader easyread = new System.IO.StreamReader("Easy.txt");
+        System.IO.StreamReader mediumLevel = new System.IO.StreamReader("Medium.txt");
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void btnStartGame_Click(object sender, RoutedEventArgs e)
-        {
-
+        private void BtnStartGame_Click(object sender, RoutedEventArgs e)
+        { MessageBox.Show("Enter the letters in LOWER CASE");
             count = 0;
             int randomnumber = random.Next(1, 10);
             lblOutput.Text = "";
@@ -49,7 +51,6 @@ namespace WpfApp4
             //and pick a random word from list/textfile
             if ((bool)rbEasy.IsChecked)
             {
-                System.IO.StreamReader easyread = new System.IO.StreamReader("Easy.txt");
                 while (!easyread.EndOfStream)
                 {
                     if (count == randomnumber)
@@ -63,66 +64,63 @@ namespace WpfApp4
                     RightAnswer = easy[randomnumber];
                     count++;
                 }
-                easyread.Close();
+                //easyread.Close();
                 for (int i = 0; i < RightAnswer.Length; i++)
                 {
                     lblOutput.Text += "_" + " ";
                 }
             }
-            if ((bool)rbMedium.IsChecked)
-            {
-                count = 0;
-                System.IO.StreamReader mediumLevel = new System.IO.StreamReader("Medium.txt");
-                while (!mediumLevel.EndOfStream)
+                if ((bool)rbMedium.IsChecked)
                 {
-                    if (count == randomnumber)
+                    count = 0;
+                    while (!mediumLevel.EndOfStream)
                     {
-                        medium[randomnumber] = mediumLevel.ReadLine();
+                        if (count == randomnumber)
+                        {
+                            medium[randomnumber] = mediumLevel.ReadLine();
+                        }
+                        else
+                        {
+                            mediumLevel.ReadLine();
+                        }
+                        RightAnswer = medium[randomnumber];
+                        count++;
                     }
-                    else
+                    //mediumLevel.Close();
+                    for (int i = 0; i < RightAnswer.Length; i++)
                     {
-                        mediumLevel.ReadLine();
+                        lblOutput.Text += "_" + " ";
                     }
-                    RightAnswer = medium[randomnumber];
-                    count++;
                 }
-                mediumLevel.Close();
-                for (int i = 0; i < RightAnswer.Length; i++)
+                if ((bool)rbHard.IsChecked)
                 {
-                    lblOutput.Text += "_" + " ";
-                }
-            }
-            if ((bool)rbHard.IsChecked)
-            {
-                count = 0;
-                System.IO.StreamReader HardLevel = new System.IO.StreamReader("Hard.txt");
-                while (!HardLevel.EndOfStream)
-                {
-                    if (count == randomnumber)
+                    count = 0;
+                    while (!HardLevel.EndOfStream)
                     {
-                        hard[randomnumber] = HardLevel.ReadLine();
+                        if (count == randomnumber)
+                        {
+                            hard[randomnumber] = HardLevel.ReadLine();
+                        }
+                        else
+                        {
+                            HardLevel.ReadLine();
+                        }
+                        RightAnswer= hard[randomnumber];
+                        count++;
                     }
-                    else
+                    //HardLevel.Close();
+                    for (int i = 0; i < RightAnswer.Length; i++)
                     {
-                        HardLevel.ReadLine();
+                        lblOutput.Text += "_" + " ";
                     }
-                    RightAnswer = hard[randomnumber];
-                    count++;
                 }
-                HardLevel.Close();
-                for (int i = 0; i < RightAnswer.Length; i++)
-                {
-                    lblOutput.Text += "_" + " ";
-                }
-            }
             MessageBox.Show("To input a new letter,please delete the previous one");
-            
-
+            RightAnswer.ToUpper();         
         }
 
-        private void btnLetterCheck_Click(object sender, RoutedEventArgs e)
+        private void BtnLetterCheck_Click(object sender, RoutedEventArgs e)
         {
-            //replace the letter of the input if right
+            txtLetterInput.Text.ToUpper();
             DiscoveredAnswer = lblOutput.Text.ToString();
             if (RightAnswer == null)
             {
@@ -133,12 +131,12 @@ namespace WpfApp4
             {
                 if (!RightAnswer.Contains(txtLetterInput.Text))
                 {
-                    
+
                     counter--;
                     //incorrectGuessed[i] = txtLetterInput.Text;
                     lblWrong = lblWrong + txtLetterInput.Text + " ";
                     lblWrongLetter.Content = lblWrong;
-                    
+
                     if (counter != 0)
                     {
                         lblWrongLetter.Content = "Your guess:  " + "\"" + txtLetterInput.Text + "\"" + " was incorrect!";
@@ -147,7 +145,7 @@ namespace WpfApp4
 
                     if (counter == 0)
                     {
-                        lblOutput.Text = "You lose! The word you were looking for was: " + RightAnswer;
+                        MessageBox.Show("You lose! The word you were looking for was: " + RightAnswer.ToUpper());
                     }
                 }
                 else
@@ -161,9 +159,13 @@ namespace WpfApp4
                             DiscoveredAnswer = DiscoveredAnswer.Insert(i * 2, lettersingle.ToString());
                             lblOutput.Text = "";
                             lblOutput.Text += DiscoveredAnswer;
+                            lblWrongLetter.Content = "Your guess:  " + "\"" + txtLetterInput.Text + "\"" + " was correct!";
                         }
-
                     }
+                }
+                if (!DiscoveredAnswer.Contains("_"))
+                {
+                    MessageBox.Show("Congrats!! You won. \n The cotrect word was: " + RightAnswer.ToUpper());
                 }
                 if (counter == 6)
                 {
@@ -241,6 +243,31 @@ namespace WpfApp4
                     canvas.Children.Add(arm2);
                 }
             }
+        }
+
+        private void BtnReplay_Click(object sender, RoutedEventArgs e)
+        {
+
+            easyread.DiscardBufferedData();
+            easyread.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
+            HardLevel.DiscardBufferedData();
+            HardLevel.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
+            mediumLevel.DiscardBufferedData();
+            mediumLevel.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
+            canvas.Children.Clear();
+
+            for (int i = 0; i < 10; i++)
+            {
+                RightAnswer = null;
+            }
+            lblOutput.Text = "";
+            counter = 5;
+            lblWrong = null;
+        }
+
+        private void BtnRestart_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
