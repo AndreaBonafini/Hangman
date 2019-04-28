@@ -1,4 +1,9 @@
-﻿using System;
+/* Andrea Bonafini
+* April 23,2019
+* Hangman
+* Enjoy hangman
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
