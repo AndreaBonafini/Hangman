@@ -27,7 +27,7 @@ namespace WpfApp4
     {
         int count = 0;
         string RightAnswer;
-        Random random = new Random(1);
+        Random random = new Random();
         string DiscoveredAnswer;
         string[] incorrectGuessed = new string[7];
         string[] easy = new string[10];
